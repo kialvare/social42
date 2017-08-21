@@ -5,9 +5,9 @@ const styles = {
 		width: 200,
 		height: 80,
 		backgroundColor: '#35353B',
-	}
+	},
 	text: {
-		fontFamily: 'Raleway', 'Helvetica', 'sans serif';
+		//fontFamily: 'Raleway', 'Helvetica', 'sans serif'
 	}
 }
 
