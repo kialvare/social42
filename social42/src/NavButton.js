@@ -7,7 +7,8 @@ const styles = {
 		backgroundColor: '#35353B',
 	},
 	text: {
-		//fontFamily: 'Raleway', 'Helvetica', 'sans serif'
+		fontFamily: 'Helvetica',
+		color: 'white',
 	}
 }
 
@@ -16,7 +17,7 @@ export default class NavButton extends Component {
 		const { text } = this.props;
 		return (
 			<div style={styles.container}>
-				
+				{text}
 			</div>
 		);
 	}
