@@ -16,6 +16,7 @@ export default class NavigationBar extends Component {
 		return (
 		<div style={styles.container}>
 			<NavButton text={'home'}/>
+			<NavButton text={'post'}/>
 		</div>
 		);
 	}
