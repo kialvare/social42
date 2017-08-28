@@ -1,1 +1,6 @@
 @import '~antd/dist/antd.css';
+
+/* Moves the side nav toggle button to the bottom of its container */
+.ant-layout-sider-trigger {
+    position: absolute;
+}
