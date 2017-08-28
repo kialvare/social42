@@ -5,10 +5,12 @@ const styles = {
 		width: 200,
 		height: 80,
 		backgroundColor: '#35353B',
+		borderBottomiColor:  
 	},
 	text: {
 		fontFamily: 'Helvetica',
 		color: 'white',
+		font-size: 18,
 	}
 }
 
