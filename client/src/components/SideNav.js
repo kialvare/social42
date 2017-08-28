@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import Layout from 'antd/lib/layout';
+import Menu from 'antd/lib/menu';
+import Icon from 'antd/lib/icon';
+
 const { Sider } = Layout;
+const pages = ['home', 'post', 'task', 'users', 'analytics', 'calendar', 'admin'];
 // const SubMenu = Menu.SubMenu;
 
 class SideNav extends Component {
@@ -24,11 +28,10 @@ class SideNav extends Component {
 		let addressPage = this.props.location.pathname.substring(1);
 
 		// Makes sure the page matches what's on the address bar on load.
-		if (addressPage === 'home' && page !== addressPage) {
-			this.setState({ page: ['home'] })
-		}
-		else if (addressPage === 'post' && page !== addressPage) {
-			this.setState({ page: ['post'] })
+		if (pages.indexOf(addressPage) >= 0 && page !== addressPage) {
+			this.setState({ page: [addressPage] })
+		} else {
+			this.setState({ page: [''] })
 		}
 	}
 

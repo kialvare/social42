@@ -6,25 +6,12 @@ import './App.css';
 // import * as firebaseui from 'firebaseui';
 import SideNav from './components/SideNav';
 import PageLayout from './components/PageLayout';
-import { Layout } from 'antd';
+import Layout from 'antd/lib/layout';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
-	constructor() {
-		super();
-		this.state = {
-			collapsed: false
-		};
-		this.onCollapse = this.onCollapse.bind(this);
-	}
-	
-	onCollapse(collapsed) {
-		console.log(collapsed);
-		this.setState({ collapsed });
-	}
-
 	componentDidMount() {
-		console.log(this.props);
+		// console.log(this.props);
 		// var uiConfig = {
 		//   signInSuccessUrl: '<url-to-redirect-to-on-success>',
 		//   signInOptions: [

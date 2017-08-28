@@ -8,7 +8,7 @@ import AnalyticsPage from './AnalyticsPage';
 import CalendarPage from './CalendarPage';
 import AdminPage from './AdminPage';
 import NotFound from './NotFound';
-import { Layout } from 'antd';
+import Layout from 'antd/lib/layout';
 const { Header, Footer } = Layout;
 
 class PageLayout extends Component {
@@ -19,6 +19,7 @@ class PageLayout extends Component {
 					<span>42 Social</span>
 				</Header>
 				<Switch>
+					<Route exact path="/" component={HomePage}/>
 					<Route exact path="/Home" component={HomePage}/>
 					<Route exact path="/Post" component={PostPage}/>
 					<Route exact path="/Tasks" component={TasksPage}/>

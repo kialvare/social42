@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import Layout from 'antd/lib/layout';
+import Breadcrumb from 'antd/lib/breadcrumb';
 const { Content } = Layout;
 
 class UsersPage extends Component {
