@@ -28,9 +28,13 @@ class SideNav extends Component {
 		let addressPage = this.props.location.pathname.substring(1);
 
 		// Makes sure the page matches what's on the address bar on load.
-		if (pages.includes(addressPage) >= 0 && page !== addressPage) {
+		if (pages.includes(addressPage) && page !== addressPage) {
 			this.setState({ page: [addressPage] })
-		} else {
+		}
+		else if (addressPage.trim() === '') {
+			this.setState({ page: ['home'] })
+		}
+		else {
 			this.setState({ page: [''] })
 		}
 	}
