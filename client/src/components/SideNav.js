@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout, Menu, Icon } from 'antd';
+const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
 class SideNav extends Component {
