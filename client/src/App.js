@@ -7,6 +7,7 @@ import './App.css';
 import SideNav from './components/SideNav';
 import PageLayout from './components/PageLayout';
 import { Layout } from 'antd';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
 	constructor() {
@@ -16,12 +17,15 @@ class App extends Component {
 		};
 		this.onCollapse = this.onCollapse.bind(this);
 	}
+	
 	onCollapse(collapsed) {
 		console.log(collapsed);
 		this.setState({ collapsed });
 	}
+
 	componentDidMount() {
-	// var uiConfig = {
+		console.log(this.props);
+		// var uiConfig = {
 		//   signInSuccessUrl: '<url-to-redirect-to-on-success>',
 		//   signInOptions: [
 		//     // Leave the lines as is for the providers you want to offer your users.
@@ -43,11 +47,20 @@ class App extends Component {
 		// ui.start('#firebaseui-auth-container', uiConfig);
 	}
 	render() {
+		// console.log(this.props);
 		return (
-			<Layout className="ant-layout-has-sider">
-				<SideNav />
-				<PageLayout />
-			</Layout>
+			<Router>
+				<Switch>
+					<Route path="/" component={(props) => {
+						return (
+							<Layout className="ant-layout-has-sider">
+								<SideNav {...props}/>
+								<PageLayout {...props} />
+							</Layout>
+						);
+					}} />
+				</Switch>
+			</Router>
 		);
 	}
 }

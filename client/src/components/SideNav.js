@@ -1,20 +1,42 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 const { Sider } = Layout;
-const SubMenu = Menu.SubMenu;
+// const SubMenu = Menu.SubMenu;
 
 class SideNav extends Component {
 	constructor() {
 		super();
 		this.state = {
-			collapsed: false
+			collapsed: false,
+			page: ['home']
 		};
 		this.onCollapse = this.onCollapse.bind(this);
+		this.onChangePage = this.onChangePage.bind(this);
 	}
+
 	onCollapse(collapsed) {
-		console.log(collapsed);
 		this.setState({ collapsed });
 	}
+
+	componentDidMount() {
+		let page = this.state.page[0];
+		let addressPage = this.props.location.pathname.substring(1);
+
+		// Makes sure the page matches what's on the address bar on load.
+		if (addressPage === 'home' && page !== addressPage) {
+			this.setState({ page: ['home'] })
+		}
+		else if (addressPage === 'post' && page !== addressPage) {
+			this.setState({ page: ['post'] })
+		}
+	}
+
+	// Changes the side nav page highlight
+	onChangePage(e) {
+		this.setState({ page: e.keyPath });
+	}
+
 	render() {
 		return (
 			<Sider
@@ -23,33 +45,41 @@ class SideNav extends Component {
 				onCollapse={this.onCollapse}
 			>
 				<div className="logo" />
-				<Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" onSelect={e => console.log(e)}>
-					<Menu.Item key="1">
-						<Icon type="pie-chart" />
-						<span>Option 1</span>
+				<Menu theme="dark" selectedKeys={this.state.page} mode="inline" onSelect={this.onChangePage}>
+					<Menu.Item key="home">
+						<Icon type="home" />
+						<span>home</span>
+						<Link to="/home"></Link>
 					</Menu.Item>
-					<Menu.Item key="2">
-						<Icon type="desktop" />
-						<span>Option 2</span>
+					<Menu.Item key="post">
+						<Icon type="edit" />
+						<span>post</span>
+						<Link to="/post"></Link>
 					</Menu.Item>
-					<SubMenu
-						key="sub1"
-						title={<span><Icon type="user" /><span>User</span></span>}
-					>
-						<Menu.Item key="3">Tom</Menu.Item>
-						<Menu.Item key="4">Bill</Menu.Item>
-						<Menu.Item key="5">Alex</Menu.Item>
-					</SubMenu>
-					<SubMenu
-						key="sub2"
-						title={<span><Icon type="team" /><span>Team</span></span>}
-					>
-						<Menu.Item key="6">Team 1</Menu.Item>
-						<Menu.Item key="8">Team 2</Menu.Item>
-					</SubMenu>
-					<Menu.Item key="9">
-						<Icon type="file" />
-						<span>File</span>
+					<Menu.Item key="tasks">
+						<Icon type="copy" />
+						<span>tasks</span>
+						<Link to="/tasks"></Link>
+					</Menu.Item>
+					<Menu.Item key="users">
+						<Icon type="team" />
+						<span>users</span>
+						<Link to="/users"></Link>
+					</Menu.Item>
+					<Menu.Item key="analytics">
+						<Icon type="line-chart" />
+						<span>analytics</span>
+						<Link to="/analytics"></Link>
+					</Menu.Item>
+					<Menu.Item key="calendar">
+						<Icon type="calendar" />
+						<span>calendar</span>
+						<Link to="/calendar"></Link>
+					</Menu.Item>
+					<Menu.Item key="admin">
+						<Icon type="key" />
+						<span>admin</span>
+						<Link to="/admin"></Link>
 					</Menu.Item>
 				</Menu>
 			</Sider>
@@ -58,3 +88,23 @@ class SideNav extends Component {
 }
 
 export default SideNav;
+
+/* <SubMenu
+	key="sub1"
+	title={<span><Icon type="user" /><span>User</span></span>}
+>
+	<Menu.Item key="3">Tom</Menu.Item>
+	<Menu.Item key="4">Bill</Menu.Item>
+	<Menu.Item key="5">Alex</Menu.Item>
+</SubMenu>
+<SubMenu
+	key="sub2"
+	title={<span><Icon type="team" /><span>Team</span></span>}
+>
+	<Menu.Item key="6">Team 1</Menu.Item>
+	<Menu.Item key="8">Team 2</Menu.Item>
+</SubMenu>
+<Menu.Item key="9">
+	<Icon type="file" />
+	<span>File</span>
+</Menu.Item> */

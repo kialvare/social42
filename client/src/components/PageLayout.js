@@ -1,23 +1,35 @@
 import React, { Component } from 'react';
-import { Layout, Breadcrumb } from 'antd';
-const { Header, Content, Footer } = Layout;
+import { Route, Switch } from 'react-router-dom';
+import HomePage from './HomePage';
+import PostPage from './PostPage';
+import TasksPage from './TasksPage';
+import UsersPage from './UsersPage';
+import AnalyticsPage from './AnalyticsPage';
+import CalendarPage from './CalendarPage';
+import AdminPage from './AdminPage';
+import NotFound from './NotFound';
+import { Layout } from 'antd';
+const { Header, Footer } = Layout;
 
 class PageLayout extends Component {
 	render() {
 		return (
 			<Layout>
-				<Header style={{ background: '#fff', padding: 0 }} />
-				<Content style={{ margin: '0 16px' }}>
-				<Breadcrumb style={{ margin: '12px 0' }}>
-					<Breadcrumb.Item>User</Breadcrumb.Item>
-					<Breadcrumb.Item>Bill</Breadcrumb.Item>
-				</Breadcrumb>
-				<div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-				Bill is a cat.
-				</div>
-				</Content>
+				<Header style={{ background: '#fff', padding: 0, textAlign: 'center' }} >
+					<span>42 Social</span>
+				</Header>
+				<Switch>
+					<Route exact path="/Home" component={HomePage}/>
+					<Route exact path="/Post" component={PostPage}/>
+					<Route exact path="/Tasks" component={TasksPage}/>
+					<Route exact path="/Users" component={UsersPage}/>
+					<Route exact path="/Analytics" component={AnalyticsPage}/>
+					<Route exact path="/Calendar" component={CalendarPage}/>
+					<Route exact path="/Admin" component={AdminPage}/>
+					<Route path="*" component={NotFound} />
+				</Switch>
 				<Footer style={{ textAlign: 'center' }}>
-					Ant Design ©2016 Created by Ant UED
+					42 Social Media Team ©2016
 				</Footer>
 			</Layout>
 		);
