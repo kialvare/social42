@@ -10,7 +10,12 @@ import Layout from 'antd/lib/layout';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends Component {
+	state = {users:[]}
+
 	componentDidMount() {
+    fetch('/users')
+    .then(res => res.json())
+    .then(users => this.setState({ users}));
 		// console.log(this.props);
 		// var uiConfig = {
 		//   signInSuccessUrl: '<url-to-redirect-to-on-success>',
@@ -33,6 +38,7 @@ class App extends Component {
 		// // The start method will wait until the DOM is loaded.
 		// ui.start('#firebaseui-auth-container', uiConfig);
 	}
+
 	render() {
 		// console.log(this.props);
 		return (
