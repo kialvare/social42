@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from 'antd/lib/layout';
 import Menu from 'antd/lib/menu';
-import Icon from 'antd/lib/icon';
 
 const { Sider } = Layout;
-const pages = ['home', 'post', 'tasks', 'users', 'analytics', 'calendar', 'admin'];
+const pages = ['', 'home', 'post', 'tasks', 'users', 'analytics', 'calendar', 'admin'];
 // const SubMenu = Menu.SubMenu;
 
 class SideNav extends Component {
@@ -28,12 +27,12 @@ class SideNav extends Component {
 		let addressPage = this.props.location.pathname.substring(1);
 		console.log(addressPage);
 		// Makes sure the page matches what's on the address bar on load.
-		if (pages.includes(addressPage) && page !== addressPage) {
+		if (addressPage.trim() === '') {
+			this.setState({ page: ['home'] })
+		}
+		else if (pages.includes(addressPage) && page !== addressPage) {
 			console.log('changing to', addressPage);
 			this.setState({ page: [addressPage] })
-		}
-		else if (addressPage.trim() === '') {
-			this.setState({ page: ['home'] })
 		}
 		else {
 			this.setState({ page: [''] })
@@ -47,45 +46,34 @@ class SideNav extends Component {
 
 	render() {
 		return (
-			<Sider
-				collapsible
-				collapsed={this.state.collapsed}
-				onCollapse={this.onCollapse}
-			>
+			<Sider>
 				<div className="logo" />
 				<Menu theme="dark" selectedKeys={this.state.page} mode="inline" onSelect={this.onChangePage}>
 					<Menu.Item key="home">
-						<Icon type="home" />
 						<span>home</span>
 						<Link to="/home"></Link>
 					</Menu.Item>
 					<Menu.Item key="post">
-						<Icon type="edit" />
 						<span>post</span>
 						<Link to="/post"></Link>
 					</Menu.Item>
 					<Menu.Item key="tasks">
-						<Icon type="copy" />
 						<span>tasks</span>
 						<Link to="/tasks"></Link>
 					</Menu.Item>
 					<Menu.Item key="users">
-						<Icon type="team" />
 						<span>users</span>
 						<Link to="/users"></Link>
 					</Menu.Item>
 					<Menu.Item key="analytics">
-						<Icon type="line-chart" />
 						<span>analytics</span>
 						<Link to="/analytics"></Link>
 					</Menu.Item>
 					<Menu.Item key="calendar">
-						<Icon type="calendar" />
 						<span>calendar</span>
 						<Link to="/calendar"></Link>
 					</Menu.Item>
 					<Menu.Item key="admin">
-						<Icon type="key" />
 						<span>admin</span>
 						<Link to="/admin"></Link>
 					</Menu.Item>
