@@ -25,8 +25,6 @@ function getListData(value) {
         { type: 'normal', content: 'This is very long usual event。。....' },
         { type: 'error', content: 'This is error event 1.' },
         { type: 'error', content: 'This is error event 2.' },
-        { type: 'error', content: 'This is error event 3.' },
-        { type: 'error', content: 'This is error event 4.' },
       ]; break;
     default:
   }
