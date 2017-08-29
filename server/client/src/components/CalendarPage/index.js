@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Layout from 'antd/lib/layout';
+import './Calendar.css';
 import Breadcrumb from 'antd/lib/breadcrumb';
 import { Calendar } from 'antd';
 const { Content } = Layout;
@@ -50,7 +51,7 @@ function dateCellRender(value) {
 
 function getMonthData(value) {
   if (value.month() === 8) {
-    return 1394;
+    return "Next Month";
   }
 }
 
@@ -62,6 +63,10 @@ function monthCellRender(value) {
   </div> : null;
 }
 
+function onSelect(value) {
+    console.log(value);
+}
+
 class CalendarPage extends Component {
 	render() {
 		return (
@@ -70,7 +75,7 @@ class CalendarPage extends Component {
                     <Breadcrumb.Item>Page</Breadcrumb.Item>
                     <Breadcrumb.Item>Calendar</Breadcrumb.Item>
                 </Breadcrumb>
-                <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} />
+                <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={onSelect}/>
             </Content>
 		);
 	}

@@ -7,6 +7,11 @@ import { Provider } from 'react-redux';
 import * as firebase from 'firebase';
 import configureStore from './store/configureStore';
 import { BrowserRouter } from 'react-router-dom';
+// import moment from 'moment';
+import LocaleProvider from 'antd/lib/locale-provider';
+import enUS from 'antd/lib/locale-provider/en_US';
+// import 'moment/locale/en-US';
+// moment.locale('en-US');
 
 var config = {
 	apiKey: "AIzaSyBRvL-20tfvq7JE3P3iZTAFzwTWJhBNdxw",
@@ -21,9 +26,11 @@ firebase.initializeApp(config);
 let store = configureStore();
 
 ReactDOM.render(
-<Provider store={store}>
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>
-</Provider>, document.getElementById('root'));
+<LocaleProvider locale={enUS}>
+	<Provider store={store}>
+		<BrowserRouter>
+			<App />
+		</BrowserRouter>
+	</Provider>
+</LocaleProvider>, document.getElementById('root'));
 registerServiceWorker();
