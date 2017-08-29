@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+import { Provider } from 'react-redux';
 import * as firebase from 'firebase';
+import configureStore from './store/configureStore';
+import { BrowserRouter } from 'react-router-dom';
 
 var config = {
 	apiKey: "AIzaSyBRvL-20tfvq7JE3P3iZTAFzwTWJhBNdxw",
@@ -15,7 +18,12 @@ var config = {
 };
 firebase.initializeApp(config);
 
+let store = configureStore();
 
-
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+<Provider store={store}>
+	<BrowserRouter>
+		<App />
+	</BrowserRouter>
+</Provider>, document.getElementById('root'));
 registerServiceWorker();

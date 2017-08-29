@@ -1,5 +1,6 @@
 let initState = {
-	currentPage: 'home'
+	currentPage: 'home',
+	user: null
 }
 const Social = (state = initState, action) => {
 	// console.log(state);
@@ -7,7 +8,17 @@ const Social = (state = initState, action) => {
 		case 'CHANGE_PAGE':
 			return {
                 ...state
-            }
+			}
+		case 'LOGIN':
+			return {
+				...state,
+				user: action.user
+			}
+		case 'LOGOUT':
+			return {
+				...state,
+				user: null
+			}
 		default:
 			return state;
 	}
