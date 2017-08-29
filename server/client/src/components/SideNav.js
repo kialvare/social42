@@ -5,7 +5,7 @@ import Menu from 'antd/lib/menu';
 import Icon from 'antd/lib/icon';
 
 const { Sider } = Layout;
-const pages = ['home', 'post', 'task', 'users', 'analytics', 'calendar', 'admin'];
+const pages = ['home', 'post', 'tasks', 'users', 'analytics', 'calendar', 'admin'];
 // const SubMenu = Menu.SubMenu;
 
 class SideNav extends Component {
@@ -26,9 +26,10 @@ class SideNav extends Component {
 	componentDidMount() {
 		let page = this.state.page[0];
 		let addressPage = this.props.location.pathname.substring(1);
-
+		console.log(addressPage);
 		// Makes sure the page matches what's on the address bar on load.
 		if (pages.includes(addressPage) && page !== addressPage) {
+			console.log('changing to', addressPage);
 			this.setState({ page: [addressPage] })
 		}
 		else if (addressPage.trim() === '') {
