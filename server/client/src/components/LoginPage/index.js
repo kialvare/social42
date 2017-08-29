@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 
-class Login extends Component {
+class LoginPage extends Component {
 	constructor() {
 		super();
 		this.login = this.login.bind(this);
 	}
 	componentDidMount() {
-		firebase.auth().onAuthStateChanged(firebaseUser => {
-			console.log(firebaseUser);
-		})
+		// firebase.auth().onAuthStateChanged(firebaseUser => {
+		// 	console.log(firebaseUser);
+		// })
 	}
 	login(e) {
 		console.log(e)
@@ -18,9 +18,15 @@ class Login extends Component {
 		let auth = firebase.auth();
 
 		const promise = auth.signInWithEmailAndPassword(email, password);
-		promise.catch(e => {
-			auth.createUserWithEmailAndPassword(email, password)
-			.catch(e => console.log(e));
+		promise
+		.then(user => {
+			console.log('got user');
+			console.log(user);
+		})
+		.catch(e => {
+			console.log(e);
+			// auth.createUserWithEmailAndPassword(email, password)
+			// .catch(e => console.log(e));
 		});
 	}
 	render() {
@@ -28,10 +34,10 @@ class Login extends Component {
 			<div>
 				<input id="email" type="email" name="email" />
 				<input id="password" type="password" name="password" />
-				<button onClick={this.login} >Login</button>
+				<button onClick={this.login} >login</button>
 			</div>
 		);
 	}
 }
 
-export default Login;
+export default LoginPage;

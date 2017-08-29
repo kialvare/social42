@@ -9,15 +9,19 @@ import CalendarPage from './CalendarPage';
 import AdminPage from './AdminPage';
 import NotFound from './NotFound';
 import Layout from 'antd/lib/layout';
-const { Header, Footer } = Layout;
+import MainHeader from './MainHeader';
+import * as firebase from 'firebase';
+
+const { Footer } = Layout;
 
 class PageLayout extends Component {
+	logout() {
+		firebase.auth().signOut();
+	}
 	render() {
 		return (
 			<Layout>
-				<Header style={{ background: '#fff', padding: 0, textAlign: 'center' }} >
-					<span>42 Social</span>
-				</Header>
+				<MainHeader />
 				<Switch>
 					<Route exact path="/" component={HomePage}/>
 					<Route exact path="/Home" component={HomePage}/>
