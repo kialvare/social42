@@ -51,7 +51,7 @@ class App extends Component {
 			<Route path="/" component={(props) => {
 				return (
 					<Layout className="ant-layout-has-sider">
-						<SideNav {...props}/>
+						<SideNav {...props} />
 						<PageLayout {...props} />
 						{/* <div id="firebaseui-auth-container" ></div> */}
 					</Layout>
