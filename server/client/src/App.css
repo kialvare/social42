@@ -4,3 +4,10 @@
 .ant-layout-sider-trigger {
     position: absolute;
 }
+
+.avatar {
+    position: absolute;
+    right: 16px;
+    top: 10px;
+    cursor: pointer;
+}

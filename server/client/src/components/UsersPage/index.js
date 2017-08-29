@@ -7,9 +7,9 @@ class UsersPage extends Component {
     state = {users:[]}
 
     componentDidMount() {
-    fetch('/users')
-    .then(res => res.json())
-    .then(users => this.setState({ users}));
+    // fetch('/users')
+    // .then(res => res.json())
+    // .then(users => this.setState({ users}));
     }
 
 //Added Users into this piece of crap here vvv and also the shit above
