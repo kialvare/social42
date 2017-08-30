@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from 'antd/lib/layout';
 import './Calendar.css';
 import Breadcrumb from 'antd/lib/breadcrumb';
-import { Calendar } from 'antd';
+import { Calendar, Modal } from 'antd';
 const { Content } = Layout;
 
 function getListData(value) {
@@ -62,10 +62,44 @@ function monthCellRender(value) {
 }
 
 function onSelect(value) {
-    console.log(value);
+  //Modal.visible = true;
+  console.log(value);
+  //console.log(value._d.getMonth() + 1);
+  //console.log(value._d.getDate());
+  //console.log(value._d.getFullYear());
+  //var date = {date = value._d.getDate(), };
+  return (value._d)
 }
 
+// function onOk(value) {
+//   console.log(value);
+// }
+
 class CalendarPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      visible: false
+    }
+  }
+  showModal = (value) => {
+
+    this.setState({
+      visible: true,
+    });
+  }
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  }
 	render() {
 		return (
             <Content style={{ margin: '0 16px' }}>
@@ -73,7 +107,18 @@ class CalendarPage extends Component {
                     <Breadcrumb.Item>Page</Breadcrumb.Item>
                     <Breadcrumb.Item>Calendar</Breadcrumb.Item>
                 </Breadcrumb>
-                <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={onSelect}/>
+                <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={this.showModal}/>
+                {/* <Modal onOk={onOk}/> */}
+                <Modal
+                  title="Basic Modal"
+                  visible={this.state.visible}
+                  onOk={this.handleOk}
+                  onCancel={this.handleCancel}
+                >
+                  <p>Some contents...</p>
+                  <p>Some contents...</p>
+                  <p>Some contents...</p>
+                </Modal>
             </Content>
 		);
 	}
