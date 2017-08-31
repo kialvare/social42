@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Twitter = require('twitter');
+var router = require('router');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -13,6 +15,13 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+var client = new Twitter({
+	consumer_key: 'l4Vnbx1yqCUA3DxfZqlFBh266';
+	consumer_secret: 'HyjJfzheUWnc9Df1zDe20cKLfCd6buuK34kq5OLJMuXrclIf2S';
+	access_key: '892914191828307968-zM6xwrUooFm7QFSaYl8xWl1BqEAjZeV';
+	access_secret: 'qB5YG54eGrs7oE76NhJGX4wsaeCzIJe3erd5CtSmmeaML';
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -42,5 +51,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

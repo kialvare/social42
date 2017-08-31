@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Layout from 'antd/lib/layout';
 import Breadcrumb from 'antd/lib/breadcrumb';
+import Textarea from 'antd/lib/input';
+import Button from 'antd/lib/button';
 const { Content } = Layout;
 
 class PostPage extends Component {
@@ -12,7 +14,10 @@ class PostPage extends Component {
                     <Breadcrumb.Item>Post</Breadcrumb.Item>
                 </Breadcrumb>
                 <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                    Post Page
+					<form method="post" action="/tweet">
+						<Textarea rows={4} name="tweeter"/>
+						<Button type="submit">Tweet</Button>
+					</form>
                 </div>
             </Content>
 		);
