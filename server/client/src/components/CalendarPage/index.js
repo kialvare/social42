@@ -61,31 +61,42 @@ function monthCellRender(value) {
   </div> : null;
 }
 
-function onSelect(value) {
-  //Modal.visible = true;
-  console.log(value);
-  //console.log(value._d.getMonth() + 1);
-  //console.log(value._d.getDate());
-  //console.log(value._d.getFullYear());
-  //var date = {date = value._d.getDate(), };
-  return (value._d)
-}
+// function onSelect(value) {
+//   //Modal.visible = true;
+//   console.log(value);
+//   //console.log(value._d.getMonth() + 1);
+//   //console.log(value._d.getDate());
+//   //console.log(value._d.getFullYear());
+//   //var date = {date = value._d.getDate(), };
+//   return (value._d)
+// }
 
 // function onOk(value) {
 //   console.log(value);
+// }
+
+// function  show(value) {
+//   console.log("in");
+// }
+
+// function show(value) {
+//   console.log("in");
+//   return (value.toString());
 // }
 
 class CalendarPage extends Component {
   constructor() {
     super();
     this.state = {
-      visible: false
+      visible: false,
+      title: ""
     }
   }
   showModal = (value) => {
-
+    const string = value.format('dddd MMMM Do YYYY');
     this.setState({
       visible: true,
+      title: string
     });
   }
   handleOk = (e) => {
@@ -110,7 +121,7 @@ class CalendarPage extends Component {
                 <Calendar dateCellRender={dateCellRender} monthCellRender={monthCellRender} onSelect={this.showModal}/>
                 {/* <Modal onOk={onOk}/> */}
                 <Modal
-                  title="Basic Modal"
+                  title={this.state.title}
                   visible={this.state.visible}
                   onOk={this.handleOk}
                   onCancel={this.handleCancel}
