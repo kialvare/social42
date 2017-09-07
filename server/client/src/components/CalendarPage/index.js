@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from 'antd/lib/layout';
 import './Calendar.css';
 import Breadcrumb from 'antd/lib/breadcrumb';
-import { Calendar, Modal } from 'antd';
+import { Calendar, Modal, Button } from 'antd';
 const { Content } = Layout;
 
 function getListData(value) {
@@ -88,15 +88,19 @@ class CalendarPage extends Component {
   constructor() {
     super();
     this.state = {
+      loading: false,
       visible: false,
-      title: ""
+      title: "",
+      event: {date: "", time: "", type: "", head: "", descripion: ""},
+      items: []
     }
   }
   showModal = (value) => {
-    const string = value.format('dddd MMMM Do YYYY');
+    const string = value.format('dddd, MMMM Do, YYYY');
     this.setState({
       visible: true,
-      title: string
+      title: string,
+      event: {date: string, time: "", type: "", head: "", description: ""}
     });
   }
   handleOk = (e) => {
@@ -111,7 +115,26 @@ class CalendarPage extends Component {
       visible: false,
     });
   }
+  addEvent = (value) => {
+    let item = this.state.items;
+    if (this.state.event.date.length > 0 && this.state.event.date === this.state.title) {
+      item.push(this.state.event);
+      this.setState({
+        items: item,
+        visible: false
+      });
+    }
+    // else {
+
+    // }
+    console.log(item.length);
+    //console.log(item);
+  }
 	render() {
+    //let list = this.state.event;
+    let view = this.state.items.length ? this.state.items.map((val, idx) => {
+        return (<p key={idx}>{this.state.items[idx].date}</p>)
+    }) : <p>No events today</p>
 		return (
             <Content style={{ margin: '0 16px' }}>
                 <Breadcrumb style={{ margin: '12px 0' }}>
@@ -125,10 +148,14 @@ class CalendarPage extends Component {
                   visible={this.state.visible}
                   onOk={this.handleOk}
                   onCancel={this.handleCancel}
-                >
-                  <p>Some contents...</p>
-                  <p>Some contents...</p>
-                  <p>Some contents...</p>
+                  footer={[
+                    <Button key="back" size="large" onClick={this.handleCancel}>Cancel</Button>,
+                    <Button key="add" type="primary" size="large" onClick={this.addEvent}>
+                        Add Event
+                    </Button>,
+                  ]}
+                  >
+                    {view}
                 </Modal>
             </Content>
 		);
