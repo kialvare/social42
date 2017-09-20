@@ -17,10 +17,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 var client = new Twitter({
-	consumer_key: 'l4Vnbx1yqCUA3DxfZqlFBh266';
-	consumer_secret: 'HyjJfzheUWnc9Df1zDe20cKLfCd6buuK34kq5OLJMuXrclIf2S';
-	access_key: '892914191828307968-zM6xwrUooFm7QFSaYl8xWl1BqEAjZeV';
-	access_secret: 'qB5YG54eGrs7oE76NhJGX4wsaeCzIJe3erd5CtSmmeaML';
+	consumer_key: 'l4Vnbx1yqCUA3DxfZqlFBh266',
+	consumer_secret: 'HyjJfzheUWnc9Df1zDe20cKLfCd6buuK34kq5OLJMuXrclIf2S',
+	access_key: '892914191828307968-zM6xwrUooFm7QFSaYl8xWl1BqEAjZeV',
+	access_secret: 'qB5YG54eGrs7oE76NhJGX4wsaeCzIJe3erd5CtSmmeaML'
 });
 
 // uncomment after placing your favicon in /public
@@ -52,5 +52,15 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.post('/tweet', function(err, req, next) {
+	var tweeter = req.body.tweeter;
+	client.post('statuses/update', {status: tweeter}, function(error, tweet, response) {
+		if (error) {
+			console.log(error);
+		}
+		console.log(tweet);
+		console.log(response);
+	});
+});
 
 module.exports = app;
