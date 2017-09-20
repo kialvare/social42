@@ -15,8 +15,8 @@ class PostPage extends Component {
                 </Breadcrumb>
                 <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
 					<form method="post" action="/tweet">
-						<Textarea rows={4} name="tweeter"/>
-						<Button type="submit">Tweet</Button>
+						<input type="textarea" name="tweeter"/>
+						<input type="submit" />
 					</form>
                 </div>
             </Content>
